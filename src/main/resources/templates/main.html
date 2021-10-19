@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Hlavní stránka</title>
+
+</head>
+<body>
+<h1>Inzeráty</h1>
+
+<!--<br><a th:href="@{create-controller}">Vytvoř inzerát</a></br>-->
+<br><a th:href="@{/inzerat.do}">Naplň tabulku</a></br>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Kategorie</th>
+        <th>Text</th>
+        <th>Cena</th>
+        <th>Heslo pro úpravu</th>
+        <th>Datum</th>
+    </tr>
+
+    <tr th:each="inzerat: ${inzeraty}">
+        <td th:text="${inzerat.getId()}"/>
+        <td th:text="${inzerat.getKategorie()}"/>
+        <td th:text="${inzerat.getText()}"/>
+        <td th:text="${inzerat.getDatum()}"/>
+    </tr>
+
+
+</table>
+
+
+</body>
+</html>
