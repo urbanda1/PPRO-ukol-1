@@ -1,41 +1,40 @@
 package cz.uhk.ppro.inzeraty.web;
 
+import cz.uhk.ppro.inzeraty.model.Inzerat;
 import cz.uhk.ppro.inzeraty.sluzby.PametoveUlozisteInzeratu;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class InzeratController {
-    private PametoveUlozisteInzeratu inzerat = new PametoveUlozisteInzeratu();
+    private PametoveUlozisteInzeratu inzeraty = new PametoveUlozisteInzeratu();
 
 
-    /**
-     * @return katalog
-     */
-    public PametoveUlozisteInzeratu getKatalog() {
-        return inzerat;
-    }
-
-    /**
-     * @param inzerat katalog, který má být nastaven (injektujeme pomoci anotaci)
-     */
-//    @Autowired
-//    public void setKatalog(PametoveUlozisteInzeratu inzerat) {
-//        this.inzerat = inzerat;
-//    }
-
-    /**
-     * Vlastni akce namapovana na danou URL, naplni Model pro JSP a urci logicke jmeno view
-     */
-    @RequestMapping("/inzerat.do")
-    public ModelAndView zobrazit() {
+    @RequestMapping("/")
+    public ModelAndView zobrazitMain() {
         ModelAndView model = new ModelAndView("main");
-        System.out.println(inzerat.getInzeraty());
-        model.addObject("inzeraty", inzerat.getInzeraty());
+        model.addObject("inzeraty", inzeraty.getInzeraty());
 
         return model;
+    }
+
+    @RequestMapping("/create-form")
+    public ModelAndView zobrazitCreate() {
+        Inzerat i = new Inzerat();
+        ModelAndView model = new ModelAndView("create");
+        model.addObject("inzerat", i);
+
+        return model;
+    }
+
+    @PostMapping("/saveInzerat")
+    public String create(@ModelAttribute("inzerat") Inzerat i) {
+        inzeraty.pridej(i);
+
+        return "redirect:/";
     }
 
 }

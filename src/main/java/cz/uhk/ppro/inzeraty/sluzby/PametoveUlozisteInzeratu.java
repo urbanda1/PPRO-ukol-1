@@ -13,8 +13,6 @@ public class PametoveUlozisteInzeratu implements UlozisteInzeratu {
 
     @Override
     public List<Inzerat> getInzeraty() {
-        pridej(new Inzerat(1, "test", "test", new BigDecimal(10000)));
-
         return Collections.unmodifiableList(inzeraty);
     }
 

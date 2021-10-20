@@ -2,35 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
     <title>Hlavní stránka</title>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Inzeráty</h1>
 
-<!--<br><a th:href="@{create-controller}">Vytvoř inzerát</a></br>-->
-<br><a th:href="@{/inzerat.do}">Naplň tabulku</a></br>
+<div align="center">
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Kategorie</th>
-        <th>Text</th>
-        <th>Cena</th>
-        <th>Heslo pro úpravu</th>
-        <th>Datum</th>
-    </tr>
+    <h1>Inzeráty</h1>
+    <p><a th:href="@{/create-form}">Vytvoř inzerát</a></p>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Kategorie</th>
+            <th>Text</th>
+            <th>Cena</th>
+            <th>Heslo pro úpravu</th>
+            <th>Datum</th>
+        </tr>
 
-    <tr th:each="inzerat: ${inzeraty}">
-        <td th:text="${inzerat.getId()}"/>
-        <td th:text="${inzerat.getKategorie()}"/>
-        <td th:text="${inzerat.getText()}"/>
-        <td th:text="${inzerat.getDatum()}"/>
-    </tr>
+        <tr th:each="inzerat: ${inzeraty}">
+            <td th:text="${inzerat.getId()}"/>
+            <td th:text="${inzerat.getKategorie()}"/>
+            <td th:text="${inzerat.getText()}"/>
+            <td th:text="${inzerat.getCena()}"/>
+            <td th:text="${inzerat.getHesloProUpravu()}"/>
+            <td th:text="${inzerat.getDatum()}"/>
+        </tr>
 
-
-</table>
+    </table>
+</div>
 
 
 </body>
