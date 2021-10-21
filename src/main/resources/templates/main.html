@@ -3,14 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Hlavní stránka</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/main.css}"/>
 </head>
 <body>
 
 <div align="center">
 
     <h1>Inzeráty</h1>
-    <p><a th:href="@{/create-form}">Vytvoř inzerát</a></p>
+    <div id="outer">
+        <div class="special"><a th:href="@{/create-form}" class="special">Vytvoř inzerát</a></div>
+
+        <form action="#" th:action="@{/filterInzeratyByKategorie}"
+              method="post">
+            <div class="special">
+                <fieldset>
+                    <td>
+                        <select th:name="kategorie">
+                            <option value="Nákup">Nákup</option>
+                            <option value="Prodej">Prodej</option>
+                            <option value="Výměna">Výměna</option>
+                            <option value="Vše">Vše</option>
+                        </select>
+                    </td>
+                </fieldset>
+            </div>
+            <div class="special"><input type="submit" id="submitButton" th:value="Filtruj"></div>
+        </form>
+    </div>
+
     <table border="1">
         <tr>
             <th>ID</th>
@@ -28,11 +48,33 @@
             <td th:text="${inzerat.getCena()}"/>
             <td th:text="${inzerat.getHesloProUpravu()}"/>
             <td th:text="${inzerat.getDatum()}"/>
+            <td>
+                <form action="#" th:action="@{/deleteInzerat}" method="post">
+                    <select type="hidden" th:name="heslo">
+                        <option type="hidden" th:value="${inzerat.getHesloProUpravu()}">Položka</option>
+                    </select>
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/edit-form}" method="post">
+                    <select type="hidden" th:name="id">
+                        <option type="hidden" th:value="${inzerat.getId()}">Položka</option>
+                    </select>
+                    <button type="submit">Změň položku</button>
+                </form>
+            </td>
         </tr>
 
     </table>
 </div>
 
-
 </body>
 </html>
+
+<!--<form ><a th:href="@{/edit-form}">-->
+<!--    <select th:name="id">-->
+<!--        <option th:value="${inzerat.getId()}">Položka</option>-->
+<!--    </select>-->
+<!--    Změn inzerát</a>-->
+<!--</form>-->
