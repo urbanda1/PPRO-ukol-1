@@ -8,12 +8,12 @@
 <body>
 
 <div align="center">
-    <br><a th:href="@{/}">Vrať se zpátky</a></br>
+    <button type="submit" role="button" class="button-5"> <a th:href="@{/}">Vrať se zpátky</a></button>
 
     <form action="#" th:action="@{/editInzerat}" th:object="${inzeratEdit}"
           method="post">
         <fieldset>
-            <input type="submit" id="submitButton" th:value="Ulož">
+            <input class="button-5" type="submit" id="submitButton" th:value="Ulož">
             <table border="1">
                 <tr>
                     <th>Kategorie</th>

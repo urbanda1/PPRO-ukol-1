@@ -8,12 +8,12 @@
 <body>
 
 <div align="center">
-    <br><a th:href="@{/}">Vrať se zpátky</a></br>
+    <button type="submit" role="button" class="button-6"><a style="color: white" th:href="@{/}">Vrať se zpátky</a></button>
     <form action="#" th:action="@{/saveInzerat}" th:object="${inzerat}"
           method="post">
         <fieldset>
-            <input type="submit" id="submitButton" th:value="Ulož">
-            <input type="reset" id="resetButton" name="reset" th:value="Vymaž"/>
+            <input class="button-5" type="submit" id="submitButton" th:value="Ulož">
+            <input class="button-5" type="reset" id="resetButton" name="reset" th:value="Vymaž"/>
             <table>
                 <thead>
                 <tr>
@@ -24,12 +24,12 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td  th:field="*{kategorie}">
-                    <select name="kategorie">
-                        <option value="Nákup">Nákup</option>
-                        <option value="Prodej">Prodej</option>
-                        <option value="Výměna">Výměna</option>
-                    </select> </td>
+                    <td th:field="*{kategorie}">
+                        <select name="kategorie">
+                            <option value="Nákup">Nákup</option>
+                            <option value="Prodej">Prodej</option>
+                            <option value="Výměna">Výměna</option>
+                        </select></td>
 
                     <td><input type="text" th:field="*{text}"></td>
                     <td><input type="text" th:field="*{cena}"></td>
